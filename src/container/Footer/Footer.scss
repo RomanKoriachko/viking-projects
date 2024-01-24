@@ -1,0 +1,72 @@
+@import '../../fonts';
+
+.footer-wrapper {
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0px;
+    .logo-and-copyright {
+        align-items: center;
+        gap: 15px;
+        @include raleway400();
+    }
+}
+
+.logo {
+    height: 60px;
+    width: 120px;
+    background-image: url(./../../assets/footer-logo.webp);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+.contacts {
+    align-items: center;
+    gap: 10px;
+    @include raleway700();
+    .viber-btn {
+        height: 35px;
+        width: 35px;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        background-image: url(../../assets/viber-img.png);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        transition: 0.3s all;
+        &:hover {
+            transform: scale(120%);
+        }
+    }
+}
+
+.footer-dark {
+    background-color: #424242;
+    color: white;
+    .logo {
+        background-image: url(../../assets/logo-ewl-dark.png);
+    }
+}
+
+// Tablet
+@media (max-width: 992px) {
+    .footer-wrapper {
+        flex-direction: column;
+    }
+}
+
+// Mobile
+@media (max-width: 576px) {
+    .footer-wrapper {
+        .logo-and-copyright {
+            flex-direction: column;
+            gap: 5px;
+        }
+    }
+    .logo {
+        height: 40px;
+    }
+    .contacts {
+        font-size: 12px;
+    }
+}

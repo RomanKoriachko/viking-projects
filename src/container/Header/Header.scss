@@ -1,0 +1,125 @@
+@import './../../fonts';
+
+.header {
+    min-height: 100px;
+    .upper-line {
+        background-color: #eb6a09;
+        .switcher-item {
+            justify-content: flex-end;
+            align-items: center;
+            .white-theme-img {
+                background-image: url(../../assets/white-theme-img.svg);
+                background-position: center;
+                background-repeat: no-repeat;
+                height: 40px;
+                width: 35px;
+            }
+            .dark-theme-img {
+                background-image: url(../../assets/dark-theme-img.svg);
+                background-position: center;
+                background-repeat: no-repeat;
+                height: 40px;
+                width: 35px;
+            }
+        }
+    }
+    .label {
+        justify-content: flex-end;
+        > span:nth-child(2) {
+            background-image: url(../../assets/dark-theme-img.svg);
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 50px;
+            width: 35px;
+        }
+    }
+    .header-content {
+        min-height: 70px;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 0px;
+        .header-logo {
+            background-image: url(../../assets/footer-logo.webp);
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            width: 200px;
+            height: 60px;
+        }
+        .user-name-and-btn {
+            gap: 20px;
+            align-items: center;
+            @include raleway700();
+            .logout-btn {
+                @include mainButton();
+                height: 50px;
+            }
+        }
+    }
+    .logout-header-content {
+        display: grid;
+        justify-content: center;
+        padding: 10px 0px;
+    }
+}
+
+.header-dark {
+    background-color: #424242;
+    color: white;
+    .upper-line {
+        background: linear-gradient(180deg, #1f1f1f, #2c2c2c 70.71%);
+    }
+    .label {
+        > span:nth-child(2) {
+            background-image: url(../../assets/white-theme-img.svg);
+        }
+    }
+    .header-content {
+        .header-logo {
+            background-image: url(../../assets/logo-ewl-dark.png);
+        }
+        .user-name-and-btn {
+            .logout-btn {
+                background: linear-gradient(180deg, #161616, #222222 70.71%);
+            }
+        }
+    }
+}
+
+// Tablet
+@media (max-width: 992px) {
+    .header {
+        .header-content {
+            .user-name-and-btn {
+                .header-user {
+                    font-size: 14px;
+                    text-align: right;
+                }
+            }
+        }
+    }
+}
+
+// Mobile
+@media (max-width: 576px) {
+    .header {
+        // min-height: 110px;
+        .header-content {
+            .header-logo {
+                width: 100px;
+                height: 40px;
+            }
+            .user-name-and-btn {
+                flex-direction: column;
+                align-items: flex-end;
+                gap: 7px;
+                padding: 5px 0px;
+                .logout-btn {
+                    padding: 5px 10px;
+                    height: 30px;
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+}

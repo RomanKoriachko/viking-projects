@@ -1,0 +1,62 @@
+@mixin sans300() {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+}
+@mixin sans400() {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+}
+@mixin sans600() {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+}
+@mixin sans700() {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+}
+
+@mixin raleway100() {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 100;
+}
+@mixin raleway400() {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 400;
+}
+@mixin raleway600() {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 600;
+}
+@mixin raleway700() {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 700;
+}
+
+@mixin mainButton() {
+    background-image: linear-gradient(
+        92.88deg,
+        #ee7c25 9.16%,
+        #eb6a09 43.89%,
+        #ff6f00 64.72%
+    );
+    border-radius: 8px;
+    border-style: none;
+    box-sizing: border-box;
+    color: #ffffff;
+    cursor: pointer;
+    flex-shrink: 0;
+    @include raleway700();
+    font-size: 16px;
+    height: 4rem;
+    padding: 0 1.6rem;
+    text-align: center;
+    text-shadow: rgba(0, 0, 0, 0.25) 0 3px 8px;
+    transition: all 0.5s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    &:hover {
+        box-shadow: rgba(235, 106, 9, 0.5) 0 1px 30px;
+        transition-duration: 0.1s;
+    }
+}

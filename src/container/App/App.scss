@@ -1,0 +1,38 @@
+* {
+    box-sizing: border-box;
+}
+.container {
+    width: 1380px;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+.row{
+    display: flex;
+}
+.column {
+    display: flex;
+    flex-direction: column;
+}
+
+@import 'reset';
+
+
+@media(max-width: 1500px) {
+    .container {
+        width: 1200px;
+    }
+}
+
+// Laptop
+@media(max-width: 1200px) {
+    .container {
+        width: 100%;
+    }
+}
+
+// Mobile
+@media(max-width: 576px) {
+    .container {
+        padding: 0 15px;
+    }
+}
