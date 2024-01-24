@@ -8,7 +8,7 @@ import {
     setPassword,
 } from 'redux/loginDataReducer'
 import './Login.scss'
-import './Registration.scss'
+import AwsomeButtonComponent from '../AwsomeButtonComponent/AwsomeButtonComponent'
 
 type Props = {}
 
@@ -27,11 +27,7 @@ const Login = (props: Props) => {
         const auth = getAuth()
         signInWithEmailAndPassword(auth, loginState.email, loginState.password)
             .then(() => {
-                if (
-                    loginState.email === 'mazaxaka.tyt@gmail.com' ||
-                    loginState.email === 'juliiaderevianko@gmail.com' ||
-                    loginState.email === 'admin@gmail.com'
-                ) {
+                if (loginState.email === 'ewl.work.acc@gmail.com') {
                     dispatch(loginAdmin())
                     localStorage.setItem(
                         'loginData',
@@ -59,6 +55,9 @@ const Login = (props: Props) => {
                 }
                 if (errorCode === 'auth/wrong-password') {
                     alert('Неправильно введений пароль')
+                }
+                if (errorCode === 'auth/invalid-login-credentials') {
+                    alert('Неправильно введений логін або пароль')
                 }
                 console.log(errorCode)
                 console.log(errorMessage)
@@ -102,9 +101,9 @@ const Login = (props: Props) => {
                                 onClick={onShowPasswordClick}
                             ></button>
                         </div>
-                        <button type="submit" className="submit-button">
-                            Увійти
-                        </button>
+                        <div className="submit-button">
+                            <AwsomeButtonComponent btnName="Увійти" />
+                        </div>
                     </div>
                 </div>
             </form>

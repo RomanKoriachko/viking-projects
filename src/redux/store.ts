@@ -18,6 +18,7 @@ import sexCheckboxReducer from './sexCheckboxReducer'
 import ShowMoreReducer from './ShowMoreReducer'
 import typeOfSortingReducer from './typeOfSortingReducer'
 import filtredArrReducer from './filtredArrReducer'
+import partnerCheckboxReducer from './partnerCheckboxReducer'
 
 export const store = configureStore({
     reducer: {
@@ -40,6 +41,7 @@ export const store = configureStore({
         darkThemeState: darkThemeReducer,
         sortingState: typeOfSortingReducer,
         filtredArrState: filtredArrReducer,
+        partnerCheckboxState: partnerCheckboxReducer,
     },
 })
 

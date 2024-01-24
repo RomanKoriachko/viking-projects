@@ -9,6 +9,7 @@ import { showLessData, showMoreData } from 'redux/ShowMoreReducer'
 import { setFormState } from 'redux/editFormReducer'
 import { getFiltredArrData } from 'redux/filtredArrReducer'
 import { Link } from 'react-router-dom'
+import AwsomeButtonComponent from '../AwsomeButtonComponent/AwsomeButtonComponent'
 
 type Props = {}
 
@@ -51,6 +52,9 @@ const Projects = (props: Props) => {
     const searchState = useAppSelector((state) => state.searchState)
     const countryCheckboxState = useAppSelector(
         (state) => state.countryCheckboxState
+    )
+    const partnersCheckboxState = useAppSelector(
+        (state) => state.partnerCheckboxState
     )
     const sexCheckboxState = useAppSelector((state) => state.sexCheckboxState)
     const isMinorState = useAppSelector((state) => state.isMinorState)
@@ -194,6 +198,9 @@ const Projects = (props: Props) => {
                   .toLowerCase()
                   .includes(searchState.toLowerCase()) ||
               element.projectName
+                  .toLowerCase()
+                  .includes(searchState.toLowerCase()) ||
+              element.partner
                   .toLowerCase()
                   .includes(searchState.toLowerCase()) ||
               element.location
@@ -378,6 +385,70 @@ const Projects = (props: Props) => {
         filtredCountryArr = tempArr
     }
 
+    // ---------------------- Partner filter ----------------------
+
+    let filtredPartnersArr: ProjectType[] = []
+    let temporaryPartnersArr1: ProjectType[] = []
+    let temporaryPartnersArr2: ProjectType[] = []
+    let temporaryPartnersArr3: ProjectType[] = []
+    let temporaryPartnersArr4: ProjectType[] = []
+    let temporaryPartnersArr5: ProjectType[] = []
+    let temporaryPartnersArr6: ProjectType[] = []
+
+    if (filterState) {
+        if (partnersCheckboxState.checkboxEwl) {
+            temporaryPartnersArr1 = tempArr.filter((el: ProjectType) =>
+                el.partner.includes('EWL')
+            )
+        }
+        if (partnersCheckboxState.checkboxPersonalService) {
+            temporaryPartnersArr2 = tempArr.filter((el: ProjectType) =>
+                el.partner.includes('Personal Service')
+            )
+        }
+        if (partnersCheckboxState.checkboxFastService) {
+            temporaryPartnersArr3 = tempArr.filter((el: ProjectType) =>
+                el.partner.includes('Fast Service')
+            )
+        }
+        if (partnersCheckboxState.checkboxBisar) {
+            temporaryPartnersArr4 = tempArr.filter((el: ProjectType) =>
+                el.partner.includes('Bisar')
+            )
+        }
+        if (partnersCheckboxState.checkboxGremmy) {
+            temporaryPartnersArr5 = tempArr.filter((el: ProjectType) =>
+                el.partner.includes('Gremmy')
+            )
+        }
+        if (partnersCheckboxState.checkboxOtto) {
+            temporaryPartnersArr6 = tempArr.filter((el: ProjectType) =>
+                el.partner.includes('Otto')
+            )
+        }
+        if (
+            partnersCheckboxState.checkboxEwl === '' &&
+            partnersCheckboxState.checkboxPersonalService === '' &&
+            partnersCheckboxState.checkboxFastService === '' &&
+            partnersCheckboxState.checkboxBisar === '' &&
+            partnersCheckboxState.checkboxGremmy === '' &&
+            partnersCheckboxState.checkboxOtto === ''
+        ) {
+            filtredPartnersArr = filtredCountryArr
+        } else {
+            filtredPartnersArr = [
+                ...temporaryPartnersArr1,
+                ...temporaryPartnersArr2,
+                ...temporaryPartnersArr3,
+                ...temporaryPartnersArr4,
+                ...temporaryPartnersArr5,
+                ...temporaryPartnersArr6,
+            ]
+        }
+    } else {
+        filtredPartnersArr = filtredCountryArr
+    }
+
     // ---------------------- sex filter ----------------------
 
     let filtredSexArr: ProjectType[] = []
@@ -406,7 +477,7 @@ const Projects = (props: Props) => {
             sexCheckboxState.female === '' &&
             sexCheckboxState.couples === ''
         ) {
-            filtredSexArr = filtredCountryArr
+            filtredSexArr = filtredPartnersArr
         } else {
             filtredSexArr = [
                 ...temporarySexArr1,
@@ -415,7 +486,7 @@ const Projects = (props: Props) => {
             ]
         }
     } else {
-        filtredSexArr = filtredCountryArr
+        filtredSexArr = filtredPartnersArr
     }
 
     // ---------------------- nationality filter ----------------------
@@ -613,7 +684,7 @@ const Projects = (props: Props) => {
 
     // delite duplicates when use filter
     const uniqueArray = filtredArr.filter(function (item, pos) {
-        return filtredArr.indexOf(item) === pos && item.partner === 'EWL'
+        return filtredArr.indexOf(item) === pos
     })
 
     // console.log(filtredArr)
@@ -647,10 +718,18 @@ const Projects = (props: Props) => {
                         <div className="confirmation-content">
                             <p>Ви впевнені?</p>
                             <div className="row confirmation-row">
-                                <button onClick={() => acceptDeliting()}>
-                                    Так
-                                </button>
-                                <button onClick={declineDeliting}>Ні</button>
+                                <div
+                                    className="confirmation-row-wrapper"
+                                    onClick={() => acceptDeliting()}
+                                >
+                                    <AwsomeButtonComponent btnName="Так" />
+                                </div>
+                                <div
+                                    className="confirmation-row-wrapper"
+                                    onClick={declineDeliting}
+                                >
+                                    <AwsomeButtonComponent btnName="Ні" />
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -666,7 +745,7 @@ const Projects = (props: Props) => {
                                     {element.projectName}
                                 </p>
                             </Link>
-                            <div className="row project-first-descroption-row">
+                            <div className="project-first-descroption-row">
                                 <div className="row project-row">
                                     <div>
                                         <div className="project-sex row">
@@ -692,9 +771,12 @@ const Projects = (props: Props) => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="project-category">
+                                {/* <div className="project-category">
                                     {element.category}
-                                </div>
+                                </div> */}
+                            </div>
+                            <div className="project-partner">
+                                Партнер: {element.partner}
                             </div>
                             <div className="is-actual-state">
                                 Актуальний: {element.isActual ? 'Так' : 'Ні'}
@@ -835,44 +917,6 @@ const Projects = (props: Props) => {
                                         </div>
                                     </div>
                                 ) : undefined}
-                                {element.synchronerLink !== '' ? (
-                                    <div className="project-item-section">
-                                        <div>
-                                            <span className="bold-text">
-                                                Посилання на приїзд:
-                                            </span>{' '}
-                                            <div className="column textfield-content">
-                                                {element.synchronerLink.includes(
-                                                    'http'
-                                                ) ? (
-                                                    splitString(
-                                                        element.synchronerLink
-                                                    ).map(
-                                                        (
-                                                            el: string,
-                                                            i: number
-                                                        ) => (
-                                                            <a
-                                                                className="synchroner-link"
-                                                                key={i}
-                                                                href={el}
-                                                                target="_blank"
-                                                                rel="noreferrer"
-                                                            >
-                                                                Посилання на
-                                                                приїзд №{i + 1}
-                                                            </a>
-                                                        )
-                                                    )
-                                                ) : (
-                                                    <div>
-                                                        {element.synchronerLink}
-                                                    </div>
-                                                )}
-                                            </div>
-                                        </div>
-                                    </div>
-                                ) : undefined}
                                 {element.contact !== '' ? (
                                     <div className="project-item-section">
                                         <div>
@@ -888,11 +932,8 @@ const Projects = (props: Props) => {
                             </div>
                             <div className="row project-item-buttons">
                                 {localLoginData.email ===
-                                    'mazaxaka.tyt@gmail.com' ||
-                                localLoginData.email ===
-                                    'juliiaderevianko@gmail.com' ||
-                                localLoginData.email === 'admin@gmail.com' ? (
-                                    <div className="row">
+                                'ewl.work.acc@gmail.com' ? (
+                                    <div className="row buttons-row-wrapper">
                                         <button
                                             className="delite-btn project-item-btn"
                                             onClick={() =>
@@ -936,7 +977,7 @@ const Projects = (props: Props) => {
                                         </button>
                                     </div>
                                 ) : undefined}
-                                <div className="row">
+                                <div className="row buttons-row-wrapper">
                                     <button
                                         className={`show-more-btn project-item-btn ${
                                             showMoreState[element.projectName]

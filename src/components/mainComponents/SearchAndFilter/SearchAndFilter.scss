@@ -34,7 +34,7 @@
                 cursor: pointer;
                 transition: 0.3s all;
                 &:hover {
-                    background-image: url(../../../assets/close-img-orange.png);
+                    background-image: url(../../../assets/close-img-blue.svg);
                 }
             }
         }
@@ -49,6 +49,7 @@
             @include raleway700();
         }
         .filter-country,
+        .filter-partner,
         .filter-sex,
         .filter-nationality {
             border-bottom: 1px solid black;
@@ -134,7 +135,7 @@
             user-select: none;
             transition: 0.3s all;
             &:hover {
-                color: #f18a01;
+                color: #8ba8ae;
             }
         }
         .filter-buttons {
@@ -174,6 +175,22 @@
                 &:active {
                     box-shadow: none;
                     transform: translateY(0);
+                }
+            }
+            .add-filters-btn-wrapper {
+                margin-bottom: 15px;
+                > button {
+                    width: 100%;
+                }
+            }
+            .filter-added {
+                > button {
+                    .aws-btn__wrapper:before {
+                        background: rgb(145, 72, 30);
+                    }
+                    .aws-btn__content {
+                        background: rgb(211, 104, 43);
+                    }
                 }
             }
         }

@@ -20,10 +20,10 @@
         justify-content: space-between;
         align-items: center;
         margin-bottom: 20px;
-        p{
+        p {
             font-size: 32px;
         }
-        button{
+        button {
             width: 30px;
             height: 30px;
             border: none;
@@ -33,68 +33,78 @@
             background-size: contain;
             background-color: transparent;
             cursor: pointer;
-            transition: .3s all;
+            transition: 0.3s all;
             &:hover {
-                background-image: url(../../../assets/close-img-orange.png);
+                background-image: url(../../../assets/close-img-blue.svg);
             }
         }
     }
     .edit-sex-and-switch {
         gap: 20px;
     }
-    form{
+    form {
         display: grid;
         grid-template-columns: 1fr;
         gap: 10px;
-        label{
+        label {
             user-select: none;
         }
         .sex-select-edit {
-            >p{
+            > p {
                 margin-bottom: 10px;
             }
-            input{
+            input {
                 height: 15px;
             }
-            label{
+            label {
                 margin-right: 10px;
             }
         }
         .age-wrapper {
             gap: 10px;
         }
-        .edit-project-btn {
-            width: 250px;
-            height: 40px;
-            @include mainButton();
+        .edit-project-btn-wrapper {
+            background-color: transparent;
+            border: none;
+            text-align: left;
+            padding: 0px;
+            width: fit-content;
         }
+    }
+    .aws-btn:before,
+    .aws-btn {
+        max-width: 300px;
     }
 }
 
 // Tablet
-@media(max-width: 992px) {
+@media (max-width: 992px) {
     .project-edit-form {
         width: 80%;
         height: 90vh;
-        form{
-            textarea{
+        form {
+            textarea {
                 height: 100px;
             }
+        }
+        .aws-btn:before,
+        .aws-btn {
+            max-width: 100%;
         }
     }
 }
 
 // Mobile
-@media(max-width: 576px) {
+@media (max-width: 576px) {
     .project-edit-form {
         width: 90%;
         padding: 20px;
         overflow-y: scroll;
-        .project-edit-header{
-            >p {
+        .project-edit-header {
+            > p {
                 font-size: 18px;
             }
-            >button{
+            > button {
                 width: 25px;
                 height: 25px;
             }
@@ -106,19 +116,19 @@
             flex-direction: column;
             gap: 0;
         }
-        form{
-            input{
+        form {
+            input {
                 height: 35px;
             }
-            .edit-project-btn{
+            .edit-project-btn {
                 width: 100%;
             }
             .sex-select-row {
-                input{
+                input {
                     margin-right: 10px;
                 }
                 font-size: 20px;
-                >div{
+                > div {
                     margin-bottom: 10px;
                 }
             }

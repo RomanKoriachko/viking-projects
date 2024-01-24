@@ -7,9 +7,7 @@
 .project-page {
     padding: 30px 0px;
     min-height: calc(100vh - 80px - 120px);
-    background: linear-gradient(217deg, #fe6e00, rgba(255, 0, 0, 0) 70.71%),
-        linear-gradient(127deg, #fd8c01, rgba(0, 255, 0, 0) 70.71%),
-        linear-gradient(336deg, #feaa02, rgba(0, 0, 255, 0) 70.71%);
+    background: linear-gradient(217deg, #8ba8ae, #b8dfe7 70.71%);
 }
 
 .project-page-item {
@@ -37,6 +35,10 @@
         font-size: 24px;
         transition: 0.3s all;
         margin-bottom: 20px;
+    }
+    .project-partner {
+        margin-bottom: 20px;
+        @include sans700();
     }
     .is-actual-state {
         margin-bottom: 20px;
@@ -85,13 +87,6 @@
             }
         }
     }
-    .project-category {
-        @include sans400();
-        font-size: 16px;
-        background-color: #eb6a09;
-        color: white;
-        padding: 5px;
-    }
     .project-item-btn {
         border: none;
         @include raleway600();
@@ -103,7 +98,7 @@
         transition: 0.3s all;
         border-radius: 5px;
         &:hover {
-            background-color: #eb6a09;
+            background-color: #8ba8ae;
         }
     }
     .delite-btn {
@@ -132,7 +127,7 @@
         padding: 8px 12px;
     }
     &:hover .project-header {
-        color: #eb6a09;
+        color: #8ba8ae;
     }
 }
 
@@ -142,6 +137,9 @@
         padding: 20px;
         .project-header {
             text-align: center;
+        }
+        .project-row {
+            flex-wrap: wrap;
         }
         .project-first-descroption-row {
             flex-direction: column;

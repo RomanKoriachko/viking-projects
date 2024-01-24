@@ -31,11 +31,9 @@
 }
 
 .main {
-    background: linear-gradient(217deg, #fe6e00, rgba(255, 0, 0, 0) 70.71%),
-        linear-gradient(127deg, #fd8c01, rgba(0, 255, 0, 0) 70.71%),
-        linear-gradient(336deg, #feaa02, rgba(0, 0, 255, 0) 70.71%);
+    background: linear-gradient(217deg, #8ba8ae, #b8dfe7 70.71%);
     .login-wrapper {
-        height: calc(100vh - 200px);
+        height: calc(100vh - 210px);
     }
 }
 
@@ -53,10 +51,10 @@
                 color: white;
             }
             .show-password-btn {
-                background-image: url(../../assets/show-password-dark.svg);
+                background-image: url(../../assets/show-password.svg);
             }
             .show-password-btn.text {
-                background-image: url(../../assets/hide-password-dark.svg);
+                background-image: url(../../assets/hide-password.svg);
             }
             .login-input:-webkit-autofill,
             .login-input:-webkit-autofill:focus,
@@ -64,8 +62,13 @@
             .password-input:-webkit-autofill:focus {
                 transition: background-color 600000s 0s, color 600000s 0s;
             }
-            .submit-button {
-                background: linear-gradient(180deg, #161616, #222222 70.71%);
+            .aws-btn--primary {
+                .aws-btn__content {
+                    background: #8ba8ae;
+                }
+                .aws-btn__wrapper:before {
+                    background: #627b7f;
+                }
             }
         }
     }
@@ -83,35 +86,13 @@
                 color: white;
             }
         }
-        .add-project-btn {
-            background: linear-gradient(180deg, #161616, #222222 70.71%);
-        }
-    }
-    .registration {
-        background-color: #424242;
-        border-color: #6b6b6b;
-        color: white;
-        .registration-wrapper {
-            input {
-                background-color: #424242;
-                border-color: #6b6b6b;
-                color: white;
+        .aws-btn--primary {
+            .aws-btn__content {
+                background: #8ba8ae;
             }
-            input:-webkit-autofill,
-            input:-webkit-autofill:focus {
-                transition: background-color 600000s 0s, color 600000s 0s;
+            .aws-btn__wrapper:before {
+                background: #627b7f;
             }
-        }
-        .grid-wrapper {
-            .submit-button {
-                background: linear-gradient(180deg, #161616, #222222 70.71%);
-            }
-        }
-        .show-password-btn {
-            background-image: url(../../assets/show-password-dark.svg);
-        }
-        .show-password-btn.text {
-            background-image: url(../../assets/hide-password-dark.svg);
         }
     }
     .search-and-filter {
@@ -145,7 +126,8 @@
             .filter-sex,
             .filter-nationality,
             .filter-is-actual,
-            .filter-sorting {
+            .filter-sorting,
+            .filter-partner {
                 border-bottom: 1px solid rgb(255, 255, 255);
             }
             .filter-arrow-btn {
@@ -160,8 +142,6 @@
             }
             .filter-buttons {
                 > button {
-                    border-color: #6b6b6b;
-                    color: white;
                     &:hover {
                         color: #fff;
                         background-color: #414141;
@@ -172,6 +152,24 @@
                     &:active {
                         box-shadow: none;
                         transform: translateY(0);
+                    }
+                }
+                .aws-btn--primary {
+                    .aws-btn__content {
+                        background: #8ba8ae;
+                    }
+                    .aws-btn__wrapper:before {
+                        background: #627b7f;
+                    }
+                }
+                .filter-added {
+                    > button {
+                        .aws-btn__wrapper:before {
+                            background: rgb(145, 72, 30);
+                        }
+                        .aws-btn__content {
+                            background: rgb(211, 104, 43);
+                        }
                     }
                 }
             }
@@ -207,7 +205,7 @@
                 background-color: rgba(177, 33, 33, 0.8);
             }
             .edit-btn {
-                background-color: rgba(211, 104, 43, 0.8);
+                background-color: #56696d;
             }
         }
         .project-item.not-actual {
@@ -220,12 +218,11 @@
                 border-color: #6b6b6b;
                 color: white;
                 .confirmation-row {
-                    button {
-                        background: linear-gradient(
-                            180deg,
-                            #161616,
-                            #222222 70.71%
-                        );
+                    .aws-btn__content {
+                        background: #8ba8ae;
+                    }
+                    .aws-btn__wrapper:before {
+                        background: #627b7f;
                     }
                 }
             }
@@ -277,22 +274,17 @@
                 background-image: url(../../assets/close-img-white.svg);
             }
         }
-        .edit-project-btn {
-            background: linear-gradient(180deg, #161616, #222222 70.71%);
-        }
-    }
-    .scroll-up {
-        background-color: #424242;
-        border-color: white;
-        background-image: url(../../assets/arrow-up-white.png);
-        &:hover {
-            background-color: #6b6b6b;
+        .aws-btn--primary {
+            .aws-btn__content {
+                background: #8ba8ae;
+            }
+            .aws-btn__wrapper:before {
+                background: #627b7f;
+            }
         }
     }
     .tablet-filter .filter-button {
         background-color: #424242;
-        border-color: white;
-        background-image: url(../../assets/filter-img-white.svg);
         background-size: 75%;
     }
     .open .filter-button {
@@ -323,11 +315,6 @@
         flex-direction: column-reverse;
         align-items: center;
     }
-    .main {
-        .login-wrapper {
-            height: calc(100vh - 237px);
-        }
-    }
     .main-content {
         .sidebar {
             display: none;
@@ -339,7 +326,7 @@
 @media (max-width: 576px) {
     .main {
         .login-wrapper {
-            height: calc(100vh - 227px);
+            height: calc(100vh - 170px);
         }
     }
 }

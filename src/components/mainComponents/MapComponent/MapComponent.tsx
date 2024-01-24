@@ -15,10 +15,6 @@ const MapComponent = (props: Props) => {
         lng: number
     }>({ lat: 52.915845892170395, lng: 18.496121727194044 })
 
-    const filtredEwlArrState = filtredArrState.filter((element) => {
-        return element.partner === 'EWL'
-    })
-
     const { isLoaded } = useLoadScript({
         /* @ts-ignore */
         googleMapsApiKey: process.env.REACT_APP_API_KEY,
@@ -26,7 +22,7 @@ const MapComponent = (props: Props) => {
     if (!isLoaded) return <div>loading...</div>
 
     const onMarkerClick = (location: string) => {
-        const currentProject = filtredEwlArrState.filter(
+        const currentProject = filtredArrState.filter(
             (element) => element.location === location
         )
         dispatch(getSearchInput(currentProject[0].lat))
@@ -42,7 +38,7 @@ const MapComponent = (props: Props) => {
             center={mapCentring}
             mapContainerClassName="map-container"
         >
-            {filtredEwlArrState.map((element: ProjectType, i: number) => (
+            {filtredArrState.map((element: ProjectType, i: number) => (
                 <Marker
                     key={i}
                     position={{

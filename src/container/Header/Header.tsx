@@ -4,6 +4,7 @@ import { Switch } from '@mui/material'
 import { darkModeOff, darkModeOn } from 'redux/darkThemeReducer'
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import AwsomeButtonComponent from 'components/mainComponents/AwsomeButtonComponent/AwsomeButtonComponent'
 
 type Props = {}
 
@@ -76,7 +77,6 @@ const Header = (props: Props) => {
                             <div className="switcher-item row">
                                 <div className="white-theme-img"></div>
                                 <Switch
-                                    color="warning"
                                     onChange={isDarkThemeOn}
                                     checked={
                                         localThemeData === 'on' ? true : false
@@ -88,37 +88,38 @@ const Header = (props: Props) => {
                     </div>
                 </div>
             </div>
-            <div className="container">
-                {currentData.isLogged ? (
-                    <div className="header-content row">
-                        <Link to={'/'}>
-                            <div className="header-logo"></div>
-                        </Link>
-                        <div className="row">
-                            <div>
-                                <div className="row user-name-and-btn">
-                                    <div className="header-user">
-                                        Користувач: {localLoginData.email}
-                                    </div>
-                                    <div>
+            <div className="header-wrapper">
+                <div className="container">
+                    {currentData.isLogged ? (
+                        <div className="header-content row">
+                            <Link to={'/'} className="header-logo-wrapper">
+                                <div className="header-logo"></div>
+                            </Link>
+                            <div className="row">
+                                <div>
+                                    <div className="row user-name-and-btn">
+                                        <div className="header-user">
+                                            Статус:{' '}
+                                            {localLoginData.email ===
+                                            'ewl.work.acc@gmail.com'
+                                                ? 'Адмін'
+                                                : 'Користувач'}
+                                        </div>
                                         <div onClick={reloadPage}>
-                                            <button
-                                                className="logout-btn"
-                                                onClick={() => logout()}
-                                            >
-                                                Вийти
-                                            </button>
+                                            <div onClick={() => logout()}>
+                                                <AwsomeButtonComponent btnName="Вийти" />
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                ) : (
-                    <div className="header-content logout-header-content row">
-                        <div className="header-logo"></div>
-                    </div>
-                )}
+                    ) : (
+                        <div className="header-content logout-header-content row">
+                            <div className="header-logo"></div>
+                        </div>
+                    )}
+                </div>
             </div>
         </header>
     )

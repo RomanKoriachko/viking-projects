@@ -2,13 +2,13 @@ import { update, ref, getDatabase, get, child } from 'firebase/database'
 import {
     addNewEditedSex,
     deliteEditedProjectData,
-    editCategory,
     editContact,
     editCountry,
     editFood,
     editIsActual,
     editLat,
     editLng,
+    editPartner,
     editProjectAdditionalInfo,
     editProjectAgeFrom,
     editProjectAgeTo,
@@ -16,16 +16,14 @@ import {
     editProjectHousingPhoto,
     editProjectInfo,
     editProjectLocation,
-    editProjectName,
     editProjectNationality,
     editSalary,
     editSex,
-    editSynchronerLink,
     editVideo,
     editWorkSchedule,
 } from 'redux/editProjectReduser'
 import { useAppDispatch, useAppSelector } from 'redux/hooks'
-import { FormGroup, Switch, TextField } from '@mui/material'
+import { FormGroup, Radio, RadioGroup, Switch, TextField } from '@mui/material'
 import Autocomplete from '@mui/material/Autocomplete'
 import FormLabel from '@mui/material/FormLabel'
 import FormControl from '@mui/material/FormControl'
@@ -33,6 +31,7 @@ import FormControlLabel from '@mui/material/FormControlLabel'
 import Checkbox from '@mui/material/Checkbox'
 import './EditProject.scss'
 import { setFormState } from 'redux/editFormReducer'
+import AwsomeButtonComponent from '../AwsomeButtonComponent/AwsomeButtonComponent'
 
 type Props = {}
 
@@ -61,22 +60,16 @@ const EditProject = (props: Props) => {
     ) => {
         dispatch(editSalary(e.target.value))
     }
-    const handleChangeProjectName = (
-        e: React.ChangeEvent<HTMLInputElement>
-    ) => {
-        const newProjectName = e.target.value.replace('/', '|')
-        dispatch(editProjectName(newProjectName))
-    }
     const handleChangeProjectLocation = (
         e: React.ChangeEvent<HTMLInputElement>
     ) => {
         dispatch(editProjectLocation(e.target.value))
     }
-    const handleChangeProjectCategory = (
-        e: React.ChangeEvent<HTMLInputElement>
-    ) => {
-        dispatch(editCategory(e.target.value))
-    }
+    // const handleChangeProjectCategory = (
+    //     e: React.ChangeEvent<HTMLInputElement>
+    // ) => {
+    //     dispatch(editCategory(e.target.value))
+    // }
 
     const handleChangeSex = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.checked) {
@@ -110,11 +103,11 @@ const EditProject = (props: Props) => {
     ) => {
         dispatch(editProjectNationality(e.target.value))
     }
-    const handleChangeProjectSynchronerLink = (
-        e: React.ChangeEvent<HTMLInputElement>
-    ) => {
-        dispatch(editSynchronerLink(e.target.value))
-    }
+    // const handleChangeProjectSynchronerLink = (
+    //     e: React.ChangeEvent<HTMLInputElement>
+    // ) => {
+    //     dispatch(editSynchronerLink(e.target.value))
+    // }
     const handleChangeProjectAdditionalInfo = (
         e: React.ChangeEvent<HTMLInputElement>
     ) => {
@@ -160,6 +153,9 @@ const EditProject = (props: Props) => {
     }
     const handleChangeLng = (e: React.ChangeEvent<HTMLInputElement>) => {
         dispatch(editLng(e.target.value))
+    }
+    const handleChangePartner = (e: React.ChangeEvent<HTMLInputElement>) => {
+        dispatch(editPartner(e.target.value))
     }
 
     const closeEditForm = () => {
@@ -227,7 +223,7 @@ const EditProject = (props: Props) => {
                             date: now,
                             lat: lat,
                             lng: lng,
-                            partner: 'EWL',
+                            partner: partner,
                         }
                         const updates = {}
                         /* @ts-ignore*/
@@ -250,6 +246,8 @@ const EditProject = (props: Props) => {
         e.preventDefault()
         if (editProjectState.sex === '') {
             alert('Необхідно обрати стать')
+        } else if (editProjectState.partner === '') {
+            alert('Необхідно обрати партнера')
         } else if (editProjectState.ageFrom > editProjectState.ageTo) {
             alert('Вік Від не може бути більше, ніж Вік До')
         } else if (
@@ -298,7 +296,9 @@ const EditProject = (props: Props) => {
     return (
         <div className="project-edit-form">
             <div className="project-edit-header">
-                <p className="tablet-header">Редагувати проєкт</p>
+                <p className="tablet-header">
+                    Редагувати проєкт - {editProjectState.projectName}
+                </p>
                 <button onClick={closeEditForm}></button>
             </div>
             <form onSubmit={onSendClick}>
@@ -323,11 +323,6 @@ const EditProject = (props: Props) => {
                                     className="checkbox-item"
                                     control={
                                         <Checkbox
-                                            sx={{
-                                                '&.Mui-checked': {
-                                                    color: '#EB6A09',
-                                                },
-                                            }}
                                             checked={
                                                 editProjectState.sex.includes(
                                                     'Чоловіки'
@@ -347,11 +342,6 @@ const EditProject = (props: Props) => {
                                     className="checkbox-item"
                                     control={
                                         <Checkbox
-                                            sx={{
-                                                '&.Mui-checked': {
-                                                    color: '#EB6A09',
-                                                },
-                                            }}
                                             checked={
                                                 editProjectState.sex.includes(
                                                     'Жінки'
@@ -371,11 +361,6 @@ const EditProject = (props: Props) => {
                                     className="checkbox-item"
                                     control={
                                         <Checkbox
-                                            sx={{
-                                                '&.Mui-checked': {
-                                                    color: '#EB6A09',
-                                                },
-                                            }}
                                             checked={
                                                 editProjectState.sex.includes(
                                                     'Пари'
@@ -397,7 +382,6 @@ const EditProject = (props: Props) => {
                                     <FormControlLabel
                                         control={
                                             <Switch
-                                                color="warning"
                                                 onChange={handleChangeIsActual}
                                                 checked={
                                                     editProjectState.isActual
@@ -411,15 +395,78 @@ const EditProject = (props: Props) => {
                         </div>
                     </FormControl>
                 </div>
-                <TextField
-                    required
-                    label="Назва проєкту"
-                    variant="outlined"
-                    id="edit-project-name"
-                    size={inputSize}
-                    value={editProjectState.projectName}
-                    onChange={handleChangeProjectName}
-                />
+                <FormControl>
+                    <FormLabel id="demo-radio-buttons-group-label">
+                        Партнер
+                    </FormLabel>
+                    <RadioGroup
+                        aria-labelledby="demo-radio-buttons-group-label"
+                        name="radio-buttons-group"
+                        row
+                        onChange={handleChangePartner}
+                    >
+                        <FormControlLabel
+                            value="EWL"
+                            control={<Radio />}
+                            label="EWL"
+                            checked={
+                                editProjectState.partner === 'EWL'
+                                    ? true
+                                    : false
+                            }
+                        />
+                        <FormControlLabel
+                            value="Personal Service"
+                            control={<Radio />}
+                            label="Personal Service"
+                            checked={
+                                editProjectState.partner === 'Personal Service'
+                                    ? true
+                                    : false
+                            }
+                        />
+                        <FormControlLabel
+                            value="Fast Service"
+                            control={<Radio />}
+                            label="Fast Service"
+                            checked={
+                                editProjectState.partner === 'Fast Service'
+                                    ? true
+                                    : false
+                            }
+                        />
+                        <FormControlLabel
+                            value="Bisar"
+                            control={<Radio />}
+                            label="Bisar"
+                            checked={
+                                editProjectState.partner === 'Bisar'
+                                    ? true
+                                    : false
+                            }
+                        />
+                        <FormControlLabel
+                            value="Gremmy"
+                            control={<Radio />}
+                            label="Gremmy"
+                            checked={
+                                editProjectState.partner === 'Gremmy'
+                                    ? true
+                                    : false
+                            }
+                        />
+                        <FormControlLabel
+                            value="Otto"
+                            control={<Radio />}
+                            label="Otto"
+                            checked={
+                                editProjectState.partner === 'Otto'
+                                    ? true
+                                    : false
+                            }
+                        />
+                    </RadioGroup>
+                </FormControl>
                 <TextField
                     required
                     label="Заробітня плата"
@@ -439,7 +486,7 @@ const EditProject = (props: Props) => {
                     value={editProjectState.location}
                     onChange={handleChangeProjectLocation}
                 />
-                <TextField
+                {/* <TextField
                     required
                     label="Категорія"
                     variant="outlined"
@@ -447,7 +494,7 @@ const EditProject = (props: Props) => {
                     size={inputSize}
                     value={editProjectState.category}
                     onChange={handleChangeProjectCategory}
-                />
+                /> */}
                 <div className="row age-wrapper">
                     <TextField
                         required
@@ -477,7 +524,7 @@ const EditProject = (props: Props) => {
                     value={editProjectState.nationalaty}
                     onChange={handleChangeProjectNationalaty}
                 />
-                <TextField
+                {/* <TextField
                     label="Посилання на приїзд"
                     variant="outlined"
                     id="edit-synchroner-link"
@@ -485,7 +532,7 @@ const EditProject = (props: Props) => {
                     size={inputSize}
                     value={editProjectState.synchronerLink}
                     onChange={handleChangeProjectSynchronerLink}
-                />
+                /> */}
                 <TextField
                     label="Відео з проєкту"
                     variant="outlined"
@@ -583,9 +630,7 @@ const EditProject = (props: Props) => {
                     }
                     onChange={handleChangeLng}
                 />
-                <button className="edit-project-btn" type="submit">
-                    Редагувати проєкт
-                </button>
+                <AwsomeButtonComponent btnName="Редагувати проєкт" />
             </form>
         </div>
     )

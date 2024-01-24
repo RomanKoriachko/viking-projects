@@ -3,7 +3,7 @@
 .header {
     min-height: 100px;
     .upper-line {
-        background-color: #eb6a09;
+        background-color: #333d46;
         .switcher-item {
             justify-content: flex-end;
             align-items: center;
@@ -33,18 +33,25 @@
             width: 35px;
         }
     }
+    .header-wrapper {
+        background-color: #8ba8ae;
+    }
     .header-content {
         min-height: 70px;
         align-items: center;
         justify-content: space-between;
-        padding: 10px 0px;
+        .header-logo-wrapper {
+            background-color: #8ba8ae;
+            height: 100%;
+        }
         .header-logo {
-            background-image: url(../../assets/footer-logo.webp);
+            background-image: url(../../assets/footer-logo.png);
             background-size: contain;
             background-position: center;
+            background-size: 46%;
             background-repeat: no-repeat;
             width: 200px;
-            height: 60px;
+            height: 70px;
         }
         .user-name-and-btn {
             gap: 20px;
@@ -52,7 +59,6 @@
             @include raleway700();
             .logout-btn {
                 @include mainButton();
-                height: 50px;
             }
         }
     }
@@ -69,6 +75,9 @@
     .upper-line {
         background: linear-gradient(180deg, #1f1f1f, #2c2c2c 70.71%);
     }
+    .header-wrapper {
+        background-color: #4d5d60;
+    }
     .label {
         > span:nth-child(2) {
             background-image: url(../../assets/white-theme-img.svg);
@@ -76,11 +85,17 @@
     }
     .header-content {
         .header-logo {
-            background-image: url(../../assets/logo-ewl-dark.png);
+            background-image: url(../../assets/logo-dark.svg);
+            background-color: #4d5d60;
         }
         .user-name-and-btn {
-            .logout-btn {
-                background: linear-gradient(180deg, #161616, #222222 70.71%);
+            .aws-btn--primary {
+                .aws-btn__content {
+                    background: #8ba8ae;
+                }
+                .aws-btn__wrapper:before {
+                    background: #627b7f;
+                }
             }
         }
     }
@@ -103,11 +118,10 @@
 // Mobile
 @media (max-width: 576px) {
     .header {
-        // min-height: 110px;
         .header-content {
             .header-logo {
-                width: 100px;
-                height: 40px;
+                height: 50px;
+                background-size: contain;
             }
             .user-name-and-btn {
                 flex-direction: column;
@@ -120,6 +134,9 @@
                     font-size: 14px;
                 }
             }
+        }
+        .aws-btn {
+            height: 34px;
         }
     }
 }

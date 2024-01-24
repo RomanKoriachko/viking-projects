@@ -2,10 +2,9 @@ import './Main.scss'
 import Projects from 'components/mainComponents/Projects/Projects'
 import AddNewProject from 'components/mainComponents/AddNewProject/AddNewProject'
 import SearchAndFilter from 'components/mainComponents/SearchAndFilter/SearchAndFilter'
-import Registration from 'components/mainComponents/RegistrationAndLogin/Registration'
 import Login from 'components/mainComponents/RegistrationAndLogin/Login'
 import { useAppSelector } from 'redux/hooks'
-import SliderComponent from 'components/mainComponents/SliderComponent/SliderComponent'
+// import SliderComponent from 'components/mainComponents/SliderComponent/SliderComponent'
 import StickyBox from 'react-sticky-box'
 import TabletFilter from 'components/mainComponents/TabletFilter/TabletFilter'
 import MapComponent from 'components/mainComponents/MapComponent/MapComponent'
@@ -55,7 +54,6 @@ const Main = (props: Props) => {
                         {currentData.isAdmin ? (
                             <div className="admin-panel row">
                                 <AddNewProject />
-                                <Registration />
                             </div>
                         ) : undefined}
                         <div className="main-content">

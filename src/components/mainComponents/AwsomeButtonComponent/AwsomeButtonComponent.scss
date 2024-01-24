@@ -1,0 +1,11 @@
+.aws-btn--primary {
+    .aws-btn__wrapper:before {
+        background: #191e22;
+    }
+    .aws-btn__wrapper:hover .aws-btn__content {
+        background: #5d6f80;
+    }
+    .aws-btn__content {
+        background: #333d46;
+    }
+}

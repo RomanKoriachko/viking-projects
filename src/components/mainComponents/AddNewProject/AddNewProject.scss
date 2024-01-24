@@ -7,24 +7,20 @@
     width: 100%;
     background: white;
     @include sans400;
-    >p{
+    > p {
         @include raleway700();
         font-size: 32px;
         margin-bottom: 20px;
     }
-    form{
+    form {
         display: grid;
         grid-template-columns: 1fr;
         gap: 10px;
-        label{
+        label {
             user-select: none;
         }
-        input{
+        input {
             @include sans400();
-        }
-        .add-project-btn {
-            width: 220px;
-            @include mainButton();
         }
         .form-item-row {
             justify-content: space-between;
@@ -34,18 +30,29 @@
                 width: 50%;
             }
         }
+        .add-project-btn-wrapper {
+            background-color: transparent;
+            border: none;
+            text-align: left;
+            padding: 0px;
+            width: fit-content;
+        }
     }
     .sex-and-switch {
         justify-content: space-between;
     }
+    .aws-btn:before,
+    .aws-btn {
+        max-width: 300px;
+    }
 }
 
 // Laptop
-@media(max-width: 1200px) {
+@media (max-width: 1200px) {
     .project-form {
         width: 100%;
     }
-    form{
+    form {
         .sex-select-wrapper {
             flex-direction: column;
         }
@@ -53,30 +60,37 @@
 }
 
 // Tablet
-@media(max-width: 992px) {
-    .project-form{
+@media (max-width: 992px) {
+    .project-form {
         .add-project-header {
             font-size: 26px;
         }
-        form{
+        form {
             .age-row {
                 gap: 10px;
-                >input{
+                > input {
                     width: 100%;
                 }
             }
+            .partner-wrapper {
+                flex-direction: column;
+            }
+        }
+        .aws-btn:before,
+        .aws-btn {
+            max-width: 100%;
         }
     }
-}  
+}
 
 // Mobile
-@media(max-width: 576px) {
+@media (max-width: 576px) {
     .project-form {
         padding: 20px;
         .add-project-header {
             font-size: 21px;
         }
-        form{
+        form {
             .sex-select-wrapper {
                 flex-direction: column;
             }
@@ -90,7 +104,7 @@
                     width: 100%;
                 }
             }
-            .add-project-btn{
+            .add-project-btn {
                 width: 100%;
                 font-size: 16px;
                 height: 40px;

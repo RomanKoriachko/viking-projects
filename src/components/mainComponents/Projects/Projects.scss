@@ -17,10 +17,8 @@
 .scroll-up {
     width: 50px;
     height: 50px;
-    border-radius: 50px;
-    background: white;
-    border: 1px solid #eb6a09;
-    background-image: url(../../../assets/arrow-up.png);
+    border: none;
+    background-image: url(../../../assets/arrow-up.svg);
     background-position: center;
     background-repeat: no-repeat;
     position: fixed;
@@ -28,10 +26,6 @@
     right: 30px;
     z-index: 100;
     cursor: pointer;
-    &:hover {
-        background: #eb6a09;
-        background-image: url(../../../assets/arrow-up-white.png);
-    }
 }
 .projects {
     display: grid;
@@ -78,6 +72,11 @@
                     height: 30px;
                 }
             }
+            .confirmation-row-wrapper {
+                > button {
+                    width: 80px;
+                }
+            }
         }
     }
     .project-item {
@@ -109,6 +108,10 @@
             font-size: 24px;
             transition: 0.3s all;
             margin-bottom: 20px;
+        }
+        .project-partner {
+            margin-bottom: 20px;
+            @include sans700();
         }
         .is-actual-state {
             margin-bottom: 20px;
@@ -149,9 +152,6 @@
                 text-decoration: none;
                 border-bottom: 1px solid transparent;
                 transition: 0.5s all;
-                &:hover {
-                    border-bottom: 1px solid #444;
-                }
             }
         }
         .project-category {
@@ -171,15 +171,12 @@
             margin-right: 10px;
             transition: 0.3s all;
             border-radius: 5px;
-            &:hover {
-                background-color: #eb6a09;
-            }
         }
         .delite-btn {
             background-color: rgb(177, 33, 33);
         }
         .edit-btn {
-            background-color: rgb(211, 104, 43);
+            background-color: #54828b;
         }
         .project-age-row {
             gap: 15px;
@@ -199,9 +196,6 @@
         }
         .copy-btn {
             padding: 8px 12px;
-        }
-        &:hover .project-header {
-            color: #eb6a09;
         }
     }
 }
@@ -234,37 +228,64 @@
                 align-items: flex-start;
                 gap: 10px;
                 .project-row {
-                    flex-direction: column;
-                    align-items: flex-start;
+                    flex-wrap: wrap;
                 }
             }
             .project-item-buttons {
                 flex-wrap: wrap;
                 gap: 10px;
+                .buttons-row-wrapper {
+                    gap: 10px;
+                    width: 100%;
+                }
+                .project-item-btn {
+                    margin-right: 0;
+                    width: 100%;
+                }
             }
         }
     }
     .scroll-up {
         width: 50px;
         height: 50px;
-        border-radius: 50px;
-        background: white;
-        border: 1px solid #eb6a09;
-        background-image: url(../../../assets/arrow-up.png);
+        border: none;
+        background-image: url(../../../assets/arrow-up.svg);
         background-position: center;
         background-repeat: no-repeat;
         position: fixed;
-        bottom: 30px;
-        right: 30px;
+        bottom: 10px;
+        right: 10px;
         z-index: 100;
         cursor: pointer;
-        &:hover {
-            background: #ffffff;
-            background-image: url(../../../assets/arrow-up.png);
-        }
         &:active {
-            background: #eb6a09;
-            background-image: url(../../../assets/arrow-up-white.png);
+            background-image: url(../../../assets/arrow-up-white.svg);
+        }
+    }
+}
+
+@media (hover: hover) {
+    .scroll-up {
+        &:hover {
+            background-image: url(../../../assets/arrow-up-white.svg);
+        }
+    }
+    .projects {
+        .project-item {
+            .project-location {
+                > a {
+                    &:hover {
+                        border-bottom: 1px solid #444;
+                    }
+                }
+            }
+            .project-item-btn {
+                &:hover {
+                    background-color: #8ba8ae;
+                }
+            }
+            &:hover .project-header {
+                color: #8ba8ae;
+            }
         }
     }
 }

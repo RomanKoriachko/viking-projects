@@ -1,7 +1,6 @@
 import { getDatabase, ref, set, get, child } from 'firebase/database'
 import {
     addNewSex,
-    changeCategory,
     changeContact,
     changeCountry,
     changeDate,
@@ -9,6 +8,7 @@ import {
     changeIsActual,
     changeLat,
     changeLng,
+    changePartner,
     changeProjectAdditionalInfo,
     changeProjectAgeFrom,
     changeProjectAgeTo,
@@ -20,14 +20,13 @@ import {
     changeProjectNationality,
     changeSalary,
     changeSex,
-    changeSynchronerlink,
     changeVideo,
     changeWorkSchedule,
     deliteProjectData,
 } from 'redux/newProjectReduser'
 import { useAppDispatch, useAppSelector } from 'redux/hooks'
 import './AddNewProject.scss'
-import { FormGroup, Switch, TextField } from '@mui/material'
+import { FormGroup, Radio, RadioGroup, Switch, TextField } from '@mui/material'
 import Autocomplete from '@mui/material/Autocomplete'
 import FormLabel from '@mui/material/FormLabel'
 import FormControl from '@mui/material/FormControl'
@@ -37,6 +36,7 @@ import {
     addCheckedCheckbox,
     removeAllCheckboxes,
 } from 'redux/checkboxCheckedReducer'
+import AwsomeButtonComponent from '../AwsomeButtonComponent/AwsomeButtonComponent'
 
 type Props = {}
 
@@ -76,11 +76,11 @@ const AddNewProject = (props: Props) => {
     ) => {
         dispatch(changeProjectLocation(e.target.value))
     }
-    const handleChangeProjectCategory = (
-        e: React.ChangeEvent<HTMLInputElement>
-    ) => {
-        dispatch(changeCategory(e.target.value))
-    }
+    // const handleChangeProjectCategory = (
+    //     e: React.ChangeEvent<HTMLInputElement>
+    // ) => {
+    //     dispatch(changeCategory(e.target.value))
+    // }
 
     const handleChangeSex = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.checked) {
@@ -151,11 +151,11 @@ const AddNewProject = (props: Props) => {
     ) => {
         dispatch(changeProjectInfo(e.target.value))
     }
-    const handleChangeProjectSynchronerLink = (
-        e: React.ChangeEvent<HTMLTextAreaElement>
-    ) => {
-        dispatch(changeSynchronerlink(e.target.value))
-    }
+    // const handleChangeProjectSynchronerLink = (
+    //     e: React.ChangeEvent<HTMLTextAreaElement>
+    // ) => {
+    //     dispatch(changeSynchronerlink(e.target.value))
+    // }
     const handleChangeContact = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         dispatch(changeContact(e.target.value))
     }
@@ -164,6 +164,9 @@ const AddNewProject = (props: Props) => {
     }
     const handleChangelng = (e: React.ChangeEvent<HTMLInputElement>) => {
         dispatch(changeLng(e.target.value))
+    }
+    const handleChangePartner = (e: React.ChangeEvent<HTMLInputElement>) => {
+        dispatch(changePartner(e.target.value))
     }
 
     const moment = require('moment')
@@ -230,7 +233,7 @@ const AddNewProject = (props: Props) => {
                             date: now,
                             lat: lat,
                             lng: lng,
-                            partner: 'EWL',
+                            partner: partner,
                         })
                         dispatch(deliteProjectData(''))
                         dispatch(removeAllCheckboxes())
@@ -251,8 +254,6 @@ const AddNewProject = (props: Props) => {
         e.preventDefault()
         if (projectState.sex === '') {
             alert('Необхідно обрати стать')
-        } else if (projectState.ageFrom > projectState.ageTo) {
-            alert('Вік Від не може бути більше, ніж Вік До')
         } else if (
             projectState.projectName.includes('.') ||
             projectState.projectName.includes('#') ||
@@ -261,6 +262,10 @@ const AddNewProject = (props: Props) => {
             projectState.projectName.includes(']')
         ) {
             alert("Недопустиме ім'я проєкту")
+        } else if (projectState.partner === '') {
+            alert('Необхідно обрати партнера')
+        } else if (projectState.ageFrom > projectState.ageTo) {
+            alert('Вік Від не може бути більше, ніж Вік До')
         } else if (
             Number.isNaN(projectState.lat) &&
             Number.isNaN(projectState.lng)
@@ -329,11 +334,6 @@ const AddNewProject = (props: Props) => {
                                     className="checkbox-item"
                                     control={
                                         <Checkbox
-                                            sx={{
-                                                '&.Mui-checked': {
-                                                    color: '#EB6A09',
-                                                },
-                                            }}
                                             checked={
                                                 checkboxState['Чоловіки']
                                                     ? true
@@ -351,11 +351,6 @@ const AddNewProject = (props: Props) => {
                                     className="checkbox-item"
                                     control={
                                         <Checkbox
-                                            sx={{
-                                                '&.Mui-checked': {
-                                                    color: '#EB6A09',
-                                                },
-                                            }}
                                             checked={
                                                 checkboxState['Жінки']
                                                     ? true
@@ -373,11 +368,6 @@ const AddNewProject = (props: Props) => {
                                     className="checkbox-item"
                                     control={
                                         <Checkbox
-                                            sx={{
-                                                '&.Mui-checked': {
-                                                    color: '#EB6A09',
-                                                },
-                                            }}
                                             checked={
                                                 checkboxState['Пари']
                                                     ? true
@@ -397,7 +387,6 @@ const AddNewProject = (props: Props) => {
                                     <FormControlLabel
                                         control={
                                             <Switch
-                                                color="warning"
                                                 onChange={isActualChange}
                                                 checked={
                                                     projectState.isActul
@@ -424,6 +413,71 @@ const AddNewProject = (props: Props) => {
                     value={projectState.projectName}
                     onChange={handleChangeProjectName}
                 />
+                <FormControl>
+                    <FormLabel id="demo-radio-buttons-group-label">
+                        Партнер
+                    </FormLabel>
+                    <RadioGroup
+                        aria-labelledby="demo-radio-buttons-group-label"
+                        name="radio-buttons-group"
+                        row
+                        className="partner-wrapper"
+                        onChange={handleChangePartner}
+                    >
+                        <FormControlLabel
+                            value="EWL"
+                            control={<Radio />}
+                            label="EWL"
+                            checked={
+                                projectState.partner === 'EWL' ? true : false
+                            }
+                        />
+                        <FormControlLabel
+                            value="Personal Service"
+                            control={<Radio />}
+                            label="Personal Service"
+                            checked={
+                                projectState.partner === 'Personal Service'
+                                    ? true
+                                    : false
+                            }
+                        />
+                        <FormControlLabel
+                            value="Fast Service"
+                            control={<Radio />}
+                            label="Fast Service"
+                            checked={
+                                projectState.partner === 'Fast Service'
+                                    ? true
+                                    : false
+                            }
+                        />
+                        <FormControlLabel
+                            value="Bisar"
+                            control={<Radio />}
+                            label="Bisar"
+                            checked={
+                                projectState.partner === 'Bisar' ? true : false
+                            }
+                        />
+                        <FormControlLabel
+                            value="Gremmy"
+                            control={<Radio />}
+                            label="Gremmy"
+                            checked={
+                                projectState.partner === 'Gremmy' ? true : false
+                            }
+                        />
+                        <FormControlLabel
+                            value="Otto"
+                            control={<Radio />}
+                            label="Otto"
+                            checked={
+                                projectState.partner === 'Otto' ? true : false
+                            }
+                        />
+                    </RadioGroup>
+                </FormControl>
                 <TextField
                     required
                     className="form-item-input"
@@ -446,7 +500,7 @@ const AddNewProject = (props: Props) => {
                     value={projectState.location}
                     onChange={handleChangeProjectLocation}
                 />
-                <TextField
+                {/* <TextField
                     required
                     className="form-item-input"
                     label="Категорія"
@@ -455,7 +509,7 @@ const AddNewProject = (props: Props) => {
                     size={inputSize}
                     value={projectState.category}
                     onChange={handleChangeProjectCategory}
-                />
+                /> */}
                 <div className="row form-item-row">
                     <TextField
                         required
@@ -495,7 +549,7 @@ const AddNewProject = (props: Props) => {
                     value={projectState.nationalaty}
                     onChange={handleChangeProjectNationalaty}
                 />
-                <TextField
+                {/* <TextField
                     className="form-item-input"
                     label="Посилання на приїзд"
                     variant="outlined"
@@ -504,7 +558,7 @@ const AddNewProject = (props: Props) => {
                     size={inputSize}
                     value={projectState.synchronerLink}
                     onChange={handleChangeProjectSynchronerLink}
-                />
+                /> */}
                 <TextField
                     required
                     className="form-item-input"
@@ -602,9 +656,7 @@ const AddNewProject = (props: Props) => {
                     value={projectState.lng}
                     onChange={handleChangelng}
                 />
-                <button className="add-project-btn" type="submit">
-                    Додати проєкт
-                </button>
+                <AwsomeButtonComponent btnName="Додати проєкт" />
             </form>
         </div>
     )

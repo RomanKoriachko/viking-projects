@@ -10,13 +10,19 @@ import {
 import React, { useState } from 'react'
 import { clearAgeState, getAgeFromInput } from 'redux/ageSearchReducer'
 import {
+    franceChecked,
     clearAllCountrysCheckboxes,
+    cyprusChecked,
     czechChecked,
     germanyChecked,
+    greeceChecked,
     hollandChecked,
     lithuaniaChecked,
     polandChecked,
     romaniaChecked,
+    slovakiaChecked,
+    spainChecked,
+    finlandChecked,
 } from 'redux/countryCheckboxReducer'
 import { addFilters, clearFilters } from 'redux/filterReducer'
 import { useAppDispatch, useAppSelector } from 'redux/hooks'
@@ -39,10 +45,21 @@ import {
     resetTypeOfSortingState,
     setTypeOfSortingState,
 } from 'redux/typeOfSortingReducer'
+import {
+    bisarChecked,
+    clearAllPartnersCheckboxes,
+    ewlChecked,
+    fastServiceChecked,
+    gremmyChecked,
+    ottoChecked,
+    personalServiceChecked,
+} from 'redux/partnerCheckboxReducer'
+import AwsomeButtonComponent from '../AwsomeButtonComponent/AwsomeButtonComponent'
 
 type Props = {}
 type FilterClassStateType = {
     countryClass: string
+    partnerClass: string
     sexClass: string
     nationalityClass: string
     actualityClass: string
@@ -53,6 +70,9 @@ const SearchAndFilter = (props: Props) => {
     const dispatch = useAppDispatch()
     const countryCheckboxState = useAppSelector(
         (state) => state.countryCheckboxState
+    )
+    const partnersCheckboxState = useAppSelector(
+        (state) => state.partnerCheckboxState
     )
     const sexCheckboxState = useAppSelector((state) => state.sexCheckboxState)
     const isMinorState = useAppSelector((state) => state.isMinorState)
@@ -88,13 +108,13 @@ const SearchAndFilter = (props: Props) => {
             ? dispatch(romaniaChecked('Румунія'))
             : dispatch(romaniaChecked(''))
     }
-    // const slovakiaCheckboxChecking = (
-    //     e: React.ChangeEvent<HTMLInputElement>
-    // ) => {
-    //     e.target.checked
-    //         ? dispatch(slovakiaChecked('Словаччина'))
-    //         : dispatch(slovakiaChecked(''))
-    // }
+    const slovakiaCheckboxChecking = (
+        e: React.ChangeEvent<HTMLInputElement>
+    ) => {
+        e.target.checked
+            ? dispatch(slovakiaChecked('Словаччина'))
+            : dispatch(slovakiaChecked(''))
+    }
     const lithuaniaCheckboxChecking = (
         e: React.ChangeEvent<HTMLInputElement>
     ) => {
@@ -116,33 +136,70 @@ const SearchAndFilter = (props: Props) => {
             ? dispatch(germanyChecked('Німеччина'))
             : dispatch(germanyChecked(''))
     }
-    // const greeceCheckboxChecking = (e: React.ChangeEvent<HTMLInputElement>) => {
-    //     e.target.checked
-    //         ? dispatch(greeceChecked('Греція'))
-    //         : dispatch(greeceChecked(''))
-    // }
-    // const spainCheckboxChecking = (e: React.ChangeEvent<HTMLInputElement>) => {
-    //     e.target.checked
-    //         ? dispatch(spainChecked('Іспанія'))
-    //         : dispatch(spainChecked(''))
-    // }
-    // const cyprusCheckboxChecking = (e: React.ChangeEvent<HTMLInputElement>) => {
-    //     e.target.checked
-    //         ? dispatch(cyprusChecked('Кіпр'))
-    //         : dispatch(cyprusChecked(''))
-    // }
-    // const franceCheckboxChecking = (e: React.ChangeEvent<HTMLInputElement>) => {
-    //     e.target.checked
-    //         ? dispatch(franceChecked('Франція'))
-    //         : dispatch(franceChecked(''))
-    // }
-    // const finlandCheckboxChecking = (
-    //     e: React.ChangeEvent<HTMLInputElement>
-    // ) => {
-    //     e.target.checked
-    //         ? dispatch(finlandChecked('Фінляндія'))
-    //         : dispatch(finlandChecked(''))
-    // }
+    const greeceCheckboxChecking = (e: React.ChangeEvent<HTMLInputElement>) => {
+        e.target.checked
+            ? dispatch(greeceChecked('Греція'))
+            : dispatch(greeceChecked(''))
+    }
+    const spainCheckboxChecking = (e: React.ChangeEvent<HTMLInputElement>) => {
+        e.target.checked
+            ? dispatch(spainChecked('Іспанія'))
+            : dispatch(spainChecked(''))
+    }
+    const cyprusCheckboxChecking = (e: React.ChangeEvent<HTMLInputElement>) => {
+        e.target.checked
+            ? dispatch(cyprusChecked('Кіпр'))
+            : dispatch(cyprusChecked(''))
+    }
+    const franceCheckboxChecking = (e: React.ChangeEvent<HTMLInputElement>) => {
+        e.target.checked
+            ? dispatch(franceChecked('Франція'))
+            : dispatch(franceChecked(''))
+    }
+    const finlandCheckboxChecking = (
+        e: React.ChangeEvent<HTMLInputElement>
+    ) => {
+        e.target.checked
+            ? dispatch(finlandChecked('Фінляндія'))
+            : dispatch(finlandChecked(''))
+    }
+
+    // --------------------- Partners Filter ---------------------
+
+    const ewlCheckboxChecking = (e: React.ChangeEvent<HTMLInputElement>) => {
+        e.target.checked
+            ? dispatch(ewlChecked('ewl'))
+            : dispatch(ewlChecked(''))
+    }
+    const personalServiceCheckboxChecking = (
+        e: React.ChangeEvent<HTMLInputElement>
+    ) => {
+        e.target.checked
+            ? dispatch(personalServiceChecked('personal service'))
+            : dispatch(personalServiceChecked(''))
+    }
+    const fastServiceCheckboxChecking = (
+        e: React.ChangeEvent<HTMLInputElement>
+    ) => {
+        e.target.checked
+            ? dispatch(fastServiceChecked('fast service'))
+            : dispatch(fastServiceChecked(''))
+    }
+    const bisarCheckboxChecking = (e: React.ChangeEvent<HTMLInputElement>) => {
+        e.target.checked
+            ? dispatch(bisarChecked('bisar'))
+            : dispatch(bisarChecked(''))
+    }
+    const gremmyCheckboxChecking = (e: React.ChangeEvent<HTMLInputElement>) => {
+        e.target.checked
+            ? dispatch(gremmyChecked('gremmy'))
+            : dispatch(gremmyChecked(''))
+    }
+    const ottoCheckboxChecking = (e: React.ChangeEvent<HTMLInputElement>) => {
+        e.target.checked
+            ? dispatch(ottoChecked('otto'))
+            : dispatch(ottoChecked(''))
+    }
 
     // --------------------- Sex Filter ---------------------
 
@@ -213,6 +270,7 @@ const SearchAndFilter = (props: Props) => {
     const resetFilter = () => {
         dispatch(clearAllCountrysCheckboxes())
         dispatch(clearAllSexCheckboxes())
+        dispatch(clearAllPartnersCheckboxes())
         dispatch(setIsMinor(false))
         dispatch(clearAgeState())
         dispatch(clearFilters())
@@ -221,17 +279,12 @@ const SearchAndFilter = (props: Props) => {
         dispatch(resetTypeOfSortingState())
     }
 
-    let isFilterAdded = {
-        color: 'white',
-        borderColor: '#f18a01',
-        backgroundColor: '#f18a01',
-    }
-
     // --------------------- Show filter categories ---------------------
 
     const [filterClassState, setFilterClassState] =
         useState<FilterClassStateType>({
             countryClass: 'filter-hide',
+            partnerClass: 'filter-hide',
             sexClass: 'filter-hide',
             nationalityClass: 'filter-hide',
             actualityClass: 'filter-hide',
@@ -247,6 +300,17 @@ const SearchAndFilter = (props: Props) => {
             : setFilterClassState((prevState: FilterClassStateType) => ({
                   ...prevState,
                   countryClass: 'filter-show',
+              }))
+    }
+    const onShowPartnersFilterClick = () => {
+        filterClassState.partnerClass === 'filter-show'
+            ? setFilterClassState((prevState: FilterClassStateType) => ({
+                  ...prevState,
+                  partnerClass: 'filter-hide',
+              }))
+            : setFilterClassState((prevState: FilterClassStateType) => ({
+                  ...prevState,
+                  partnerClass: 'filter-show',
               }))
     }
     const onShowSexFilterClick = () => {
@@ -336,9 +400,6 @@ const SearchAndFilter = (props: Props) => {
                                         name="poland"
                                         onChange={polandCheckboxChecking}
                                         sx={{
-                                            '&.Mui-checked': {
-                                                color: '#EB6A09',
-                                            },
                                             '& .MuiSvgIcon-root': {
                                                 fontSize: 20,
                                             },
@@ -363,9 +424,6 @@ const SearchAndFilter = (props: Props) => {
                                         name="czech"
                                         onChange={czechCheckboxChecking}
                                         sx={{
-                                            '&.Mui-checked': {
-                                                color: '#EB6A09',
-                                            },
                                             '& .MuiSvgIcon-root': {
                                                 fontSize: 20,
                                             },
@@ -390,9 +448,6 @@ const SearchAndFilter = (props: Props) => {
                                         name="romania"
                                         onChange={romaniaCheckboxChecking}
                                         sx={{
-                                            '&.Mui-checked': {
-                                                color: '#EB6A09',
-                                            },
                                             '& .MuiSvgIcon-root': {
                                                 fontSize: 20,
                                             },
@@ -406,7 +461,7 @@ const SearchAndFilter = (props: Props) => {
                                 }
                             />
                         </div>
-                        {/* <div className="filter-item">
+                        <div className="filter-item">
                             <FormControlLabel
                                 label="Словаччина"
                                 className="filter-checkbox"
@@ -417,9 +472,6 @@ const SearchAndFilter = (props: Props) => {
                                         name="slovakia"
                                         onChange={slovakiaCheckboxChecking}
                                         sx={{
-                                            '&.Mui-checked': {
-                                                color: '#EB6A09',
-                                            },
                                             '& .MuiSvgIcon-root': {
                                                 fontSize: 20,
                                             },
@@ -432,7 +484,7 @@ const SearchAndFilter = (props: Props) => {
                                     />
                                 }
                             />
-                        </div> */}
+                        </div>
                         <div className="filter-item">
                             <FormControlLabel
                                 label="Литва"
@@ -444,9 +496,6 @@ const SearchAndFilter = (props: Props) => {
                                         name="lithuania"
                                         onChange={lithuaniaCheckboxChecking}
                                         sx={{
-                                            '&.Mui-checked': {
-                                                color: '#EB6A09',
-                                            },
                                             '& .MuiSvgIcon-root': {
                                                 fontSize: 20,
                                             },
@@ -471,9 +520,6 @@ const SearchAndFilter = (props: Props) => {
                                         name="holland"
                                         onChange={hollandCheckboxChecking}
                                         sx={{
-                                            '&.Mui-checked': {
-                                                color: '#EB6A09',
-                                            },
                                             '& .MuiSvgIcon-root': {
                                                 fontSize: 20,
                                             },
@@ -498,9 +544,6 @@ const SearchAndFilter = (props: Props) => {
                                         name="germany"
                                         onChange={germanyCheckboxChecking}
                                         sx={{
-                                            '&.Mui-checked': {
-                                                color: '#EB6A09',
-                                            },
                                             '& .MuiSvgIcon-root': {
                                                 fontSize: 20,
                                             },
@@ -514,7 +557,7 @@ const SearchAndFilter = (props: Props) => {
                                 }
                             />
                         </div>
-                        {/* <div className="filter-item">
+                        <div className="filter-item">
                             <FormControlLabel
                                 label="Греція"
                                 className="filter-checkbox"
@@ -525,9 +568,6 @@ const SearchAndFilter = (props: Props) => {
                                         name="greece"
                                         onChange={greeceCheckboxChecking}
                                         sx={{
-                                            '&.Mui-checked': {
-                                                color: '#EB6A09',
-                                            },
                                             '& .MuiSvgIcon-root': {
                                                 fontSize: 20,
                                             },
@@ -540,8 +580,8 @@ const SearchAndFilter = (props: Props) => {
                                     />
                                 }
                             />
-                        </div> */}
-                        {/* <div className="filter-item">
+                        </div>
+                        <div className="filter-item">
                             <FormControlLabel
                                 label="Іспанія"
                                 className="filter-checkbox"
@@ -552,9 +592,6 @@ const SearchAndFilter = (props: Props) => {
                                         name="spain"
                                         onChange={spainCheckboxChecking}
                                         sx={{
-                                            '&.Mui-checked': {
-                                                color: '#EB6A09',
-                                            },
                                             '& .MuiSvgIcon-root': {
                                                 fontSize: 20,
                                             },
@@ -567,8 +604,8 @@ const SearchAndFilter = (props: Props) => {
                                     />
                                 }
                             />
-                        </div> */}
-                        {/* <div className="filter-item">
+                        </div>
+                        <div className="filter-item">
                             <FormControlLabel
                                 label="Кіпр"
                                 className="filter-checkbox"
@@ -579,9 +616,6 @@ const SearchAndFilter = (props: Props) => {
                                         name="cyprus"
                                         onChange={cyprusCheckboxChecking}
                                         sx={{
-                                            '&.Mui-checked': {
-                                                color: '#EB6A09',
-                                            },
                                             '& .MuiSvgIcon-root': {
                                                 fontSize: 20,
                                             },
@@ -594,8 +628,8 @@ const SearchAndFilter = (props: Props) => {
                                     />
                                 }
                             />
-                        </div> */}
-                        {/* <div className="filter-item">
+                        </div>
+                        <div className="filter-item">
                             <FormControlLabel
                                 label="Франція"
                                 className="filter-checkbox"
@@ -606,9 +640,6 @@ const SearchAndFilter = (props: Props) => {
                                         name="france"
                                         onChange={franceCheckboxChecking}
                                         sx={{
-                                            '&.Mui-checked': {
-                                                color: '#EB6A09',
-                                            },
                                             '& .MuiSvgIcon-root': {
                                                 fontSize: 20,
                                             },
@@ -621,8 +652,8 @@ const SearchAndFilter = (props: Props) => {
                                     />
                                 }
                             />
-                        </div> */}
-                        {/* <div className="filter-item">
+                        </div>
+                        <div className="filter-item">
                             <FormControlLabel
                                 label="Фінляндія"
                                 className="filter-checkbox"
@@ -633,9 +664,6 @@ const SearchAndFilter = (props: Props) => {
                                         name="finland"
                                         onChange={finlandCheckboxChecking}
                                         sx={{
-                                            '&.Mui-checked': {
-                                                color: '#EB6A09',
-                                            },
                                             '& .MuiSvgIcon-root': {
                                                 fontSize: 20,
                                             },
@@ -648,7 +676,168 @@ const SearchAndFilter = (props: Props) => {
                                     />
                                 }
                             />
-                        </div> */}
+                        </div>
+                    </div>
+                </div>
+                <div className="filter-partner">
+                    <div
+                        className="row filter-category-header"
+                        onClick={() => onShowPartnersFilterClick()}
+                    >
+                        <div className="filter-section-header">Партнер</div>
+                        <div
+                            className={`filter-arrow-btn ${filterClassState.partnerClass}`}
+                        ></div>
+                    </div>
+                    <div
+                        className={`filter-content-wrapper ${filterClassState.partnerClass}`}
+                    >
+                        <div className="filter-item">
+                            <FormControlLabel
+                                label="EWL"
+                                className="filter-checkbox"
+                                control={
+                                    <Checkbox
+                                        className="ewl-checkbox"
+                                        id="ewl"
+                                        name="ewl"
+                                        onChange={ewlCheckboxChecking}
+                                        sx={{
+                                            '& .MuiSvgIcon-root': {
+                                                fontSize: 20,
+                                            },
+                                        }}
+                                        checked={
+                                            partnersCheckboxState.checkboxEwl
+                                                ? true
+                                                : false
+                                        }
+                                    />
+                                }
+                            />
+                        </div>
+                        <div className="filter-item">
+                            <FormControlLabel
+                                label="Personal Service"
+                                className="filter-checkbox"
+                                control={
+                                    <Checkbox
+                                        className="personal-service-checkbox"
+                                        id="personal-service"
+                                        name="personal-service"
+                                        onChange={
+                                            personalServiceCheckboxChecking
+                                        }
+                                        sx={{
+                                            '& .MuiSvgIcon-root': {
+                                                fontSize: 20,
+                                            },
+                                        }}
+                                        checked={
+                                            partnersCheckboxState.checkboxPersonalService
+                                                ? true
+                                                : false
+                                        }
+                                    />
+                                }
+                            />
+                        </div>
+                        <div className="filter-item">
+                            <FormControlLabel
+                                label="Fast Service"
+                                className="filter-checkbox"
+                                control={
+                                    <Checkbox
+                                        className="fast-service-checkbox"
+                                        id="fast-service"
+                                        name="fast-service"
+                                        onChange={fastServiceCheckboxChecking}
+                                        sx={{
+                                            '& .MuiSvgIcon-root': {
+                                                fontSize: 20,
+                                            },
+                                        }}
+                                        checked={
+                                            partnersCheckboxState.checkboxFastService
+                                                ? true
+                                                : false
+                                        }
+                                    />
+                                }
+                            />
+                        </div>
+                        <div className="filter-item">
+                            <FormControlLabel
+                                label="Bisar"
+                                className="filter-checkbox"
+                                control={
+                                    <Checkbox
+                                        className="bisar-checkbox"
+                                        id="bisar"
+                                        name="bisar"
+                                        onChange={bisarCheckboxChecking}
+                                        sx={{
+                                            '& .MuiSvgIcon-root': {
+                                                fontSize: 20,
+                                            },
+                                        }}
+                                        checked={
+                                            partnersCheckboxState.checkboxBisar
+                                                ? true
+                                                : false
+                                        }
+                                    />
+                                }
+                            />
+                        </div>
+                        <div className="filter-item">
+                            <FormControlLabel
+                                label="Gremmy"
+                                className="filter-checkbox"
+                                control={
+                                    <Checkbox
+                                        className="gremmy-checkbox"
+                                        id="gremmy"
+                                        name="gremmy"
+                                        onChange={gremmyCheckboxChecking}
+                                        sx={{
+                                            '& .MuiSvgIcon-root': {
+                                                fontSize: 20,
+                                            },
+                                        }}
+                                        checked={
+                                            partnersCheckboxState.checkboxGremmy
+                                                ? true
+                                                : false
+                                        }
+                                    />
+                                }
+                            />
+                        </div>
+                        <div className="filter-item">
+                            <FormControlLabel
+                                label="Otto"
+                                className="filter-checkbox"
+                                control={
+                                    <Checkbox
+                                        className="otto-checkbox"
+                                        id="otto"
+                                        name="otto"
+                                        onChange={ottoCheckboxChecking}
+                                        sx={{
+                                            '& .MuiSvgIcon-root': {
+                                                fontSize: 20,
+                                            },
+                                        }}
+                                        checked={
+                                            partnersCheckboxState.checkboxOtto
+                                                ? true
+                                                : false
+                                        }
+                                    />
+                                }
+                            />
+                        </div>
                     </div>
                 </div>
                 <div className="filter-sex">
@@ -674,9 +863,6 @@ const SearchAndFilter = (props: Props) => {
                                         name="male"
                                         onChange={maleCheckboxChecking}
                                         sx={{
-                                            '&.Mui-checked': {
-                                                color: '#EB6A09',
-                                            },
                                             '& .MuiSvgIcon-root': {
                                                 fontSize: 20,
                                             },
@@ -698,9 +884,6 @@ const SearchAndFilter = (props: Props) => {
                                         name="feemale"
                                         onChange={femaleCheckboxChecking}
                                         sx={{
-                                            '&.Mui-checked': {
-                                                color: '#EB6A09',
-                                            },
                                             '& .MuiSvgIcon-root': {
                                                 fontSize: 20,
                                             },
@@ -724,9 +907,6 @@ const SearchAndFilter = (props: Props) => {
                                         name="couples"
                                         onChange={couplesCheckboxChecking}
                                         sx={{
-                                            '&.Mui-checked': {
-                                                color: '#EB6A09',
-                                            },
                                             '& .MuiSvgIcon-root': {
                                                 fontSize: 20,
                                             },
@@ -767,9 +947,6 @@ const SearchAndFilter = (props: Props) => {
                                         name="ukraine"
                                         onChange={nationalityFilterClick}
                                         sx={{
-                                            '&.Mui-checked': {
-                                                color: '#EB6A09',
-                                            },
                                             '& .MuiSvgIcon-root': {
                                                 fontSize: 20,
                                             },
@@ -791,9 +968,6 @@ const SearchAndFilter = (props: Props) => {
                                         name="moldova"
                                         onChange={nationalityFilterClick}
                                         sx={{
-                                            '&.Mui-checked': {
-                                                color: '#EB6A09',
-                                            },
                                             '& .MuiSvgIcon-root': {
                                                 fontSize: 20,
                                             },
@@ -815,9 +989,6 @@ const SearchAndFilter = (props: Props) => {
                                         name="georgia"
                                         onChange={nationalityFilterClick}
                                         sx={{
-                                            '&.Mui-checked': {
-                                                color: '#EB6A09',
-                                            },
                                             '& .MuiSvgIcon-root': {
                                                 fontSize: 20,
                                             },
@@ -839,9 +1010,6 @@ const SearchAndFilter = (props: Props) => {
                                         name="virmenia"
                                         onChange={nationalityFilterClick}
                                         sx={{
-                                            '&.Mui-checked': {
-                                                color: '#EB6A09',
-                                            },
                                             '& .MuiSvgIcon-root': {
                                                 fontSize: 20,
                                             },
@@ -863,9 +1031,6 @@ const SearchAndFilter = (props: Props) => {
                                         name="bilorus"
                                         onChange={nationalityFilterClick}
                                         sx={{
-                                            '&.Mui-checked': {
-                                                color: '#EB6A09',
-                                            },
                                             '& .MuiSvgIcon-root': {
                                                 fontSize: 20,
                                             },
@@ -902,41 +1067,17 @@ const SearchAndFilter = (props: Props) => {
                         >
                             <FormControlLabel
                                 value="actual"
-                                control={
-                                    <Radio
-                                        sx={{
-                                            '&.Mui-checked': {
-                                                color: '#EB6A09',
-                                            },
-                                        }}
-                                    />
-                                }
+                                control={<Radio />}
                                 label="Актуальні"
                             />
                             <FormControlLabel
                                 value="notActual"
-                                control={
-                                    <Radio
-                                        sx={{
-                                            '&.Mui-checked': {
-                                                color: '#EB6A09',
-                                            },
-                                        }}
-                                    />
-                                }
+                                control={<Radio />}
                                 label="Не актуальні"
                             />
                             <FormControlLabel
                                 value="both"
-                                control={
-                                    <Radio
-                                        sx={{
-                                            '&.Mui-checked': {
-                                                color: '#EB6A09',
-                                            },
-                                        }}
-                                    />
-                                }
+                                control={<Radio />}
                                 label="Всі"
                             />
                         </RadioGroup>
@@ -965,34 +1106,17 @@ const SearchAndFilter = (props: Props) => {
                         >
                             <FormControlLabel
                                 value="name"
-                                control={
-                                    <Radio
-                                        sx={{
-                                            '&.Mui-checked': {
-                                                color: '#EB6A09',
-                                            },
-                                        }}
-                                    />
-                                }
+                                control={<Radio />}
                                 label="Сортувати по назві"
                             />
                             <FormControlLabel
                                 value="date"
-                                control={
-                                    <Radio
-                                        sx={{
-                                            '&.Mui-checked': {
-                                                color: '#EB6A09',
-                                            },
-                                        }}
-                                    />
-                                }
+                                control={<Radio />}
                                 label="Сортувати по даті"
                             />
                         </RadioGroup>
                     </FormControl>
                 </div>
-
                 <div className="filter-adult">
                     <div className="filter-wrapper">
                         <div className="filter-item">
@@ -1000,7 +1124,6 @@ const SearchAndFilter = (props: Props) => {
                                 <FormControlLabel
                                     control={
                                         <Switch
-                                            color="warning"
                                             onChange={isMinorChecking}
                                             checked={
                                                 isMinorState ? true : false
@@ -1028,15 +1151,20 @@ const SearchAndFilter = (props: Props) => {
                     </div>
                 </div>
                 <div className="filter-buttons">
-                    <button
+                    <div
+                        className={`add-filters-btn-wrapper ${
+                            filterState ? 'filter-added' : ''
+                        }`}
                         onClick={() => onAddFilterClick()}
-                        style={filterState ? isFilterAdded : {}}
                     >
-                        Застосувати фільтр
-                    </button>
-                    <button onClick={() => resetFilter()}>
-                        Скинути фільтр
-                    </button>
+                        <AwsomeButtonComponent btnName="Застосувати фільтр" />
+                    </div>
+                    <div
+                        className="add-filters-btn-wrapper"
+                        onClick={() => resetFilter()}
+                    >
+                        <AwsomeButtonComponent btnName="Скинути фільтр" />
+                    </div>
                 </div>
             </div>
         </div>

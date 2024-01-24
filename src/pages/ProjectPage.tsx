@@ -91,9 +91,9 @@ const ProjectPage = (props: Props) => {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="project-category">
-                                        {currentProject[0].category}
-                                    </div>
+                                </div>
+                                <div className="project-partner">
+                                    Партнер: {currentProject[0].partner}
                                 </div>
                                 <div
                                     className={`is-actual-state ${isActualClass}`}

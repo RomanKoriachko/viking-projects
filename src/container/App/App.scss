@@ -1,3 +1,5 @@
+@import 'reset';
+
 * {
     box-sizing: border-box;
 }
@@ -6,7 +8,7 @@
     margin: 0 auto;
     padding: 0 30px;
 }
-.row{
+.row {
     display: flex;
 }
 .column {
@@ -14,24 +16,21 @@
     flex-direction: column;
 }
 
-@import 'reset';
-
-
-@media(max-width: 1500px) {
+@media (max-width: 1500px) {
     .container {
         width: 1200px;
     }
 }
 
 // Laptop
-@media(max-width: 1200px) {
+@media (max-width: 1200px) {
     .container {
         width: 100%;
     }
 }
 
 // Mobile
-@media(max-width: 576px) {
+@media (max-width: 576px) {
     .container {
         padding: 0 15px;
     }

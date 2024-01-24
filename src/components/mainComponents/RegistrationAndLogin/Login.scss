@@ -37,10 +37,10 @@
         font-size: 18px;
         transition: 0.3s all;
         &:focus {
-            outline-color: #eb6a09;
+            outline-color: #8ba8ae;
         }
         &:focus-within {
-            color: #eb6a09;
+            color: #8ba8ae;
         }
     }
     .login-input {
@@ -63,7 +63,7 @@
         border: 1px solid transparent;
         border-radius: 50px;
         background-color: transparent;
-        background-image: url(../../../assets/show-password.png);
+        background-image: url(../../../assets/show-password.svg);
         background-repeat: no-repeat;
         background-position: center;
         background-size: 70%;
@@ -74,13 +74,16 @@
         }
     }
     .show-password-btn.text {
-        background-image: url(../../../assets/hide-password.png);
+        background-image: url(../../../assets/hide-password.svg);
     }
     .submit-button {
         grid-area: c;
-        @include mainButton();
         padding-left: 50px;
         padding-right: 50px;
+        .aws-btn:before,
+        .aws-btn {
+            width: 200px;
+        }
     }
 }
 
@@ -95,8 +98,11 @@
 
 // Mobile
 @media (max-width: 576px) {
+    .login-header {
+        font-size: 24px;
+    }
     .login {
-        width: 90%;
+        width: 80%;
     }
     .grid-wrapper {
         grid-template-columns: 1fr;
@@ -109,6 +115,11 @@
         }
         .submit-button {
             width: 100%;
+            padding: 0px;
+            .aws-btn:before,
+            .aws-btn {
+                width: 100%;
+            }
         }
         .show-password-btn {
             &:hover {
