@@ -12,7 +12,7 @@ const Footer = (props: Props) => {
                 <div className="footer-wrapper">
                     <div className="logo"></div>
                     <p className="copyright">
-                        © 2023 Viking recruiting, v 1.0.2
+                        © 2023 Viking recruiting, v 1.1.0
                     </p>
                 </div>
             </div>

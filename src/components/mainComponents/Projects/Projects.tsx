@@ -933,49 +933,53 @@ const Projects = (props: Props) => {
                             <div className="row project-item-buttons">
                                 {localLoginData.email ===
                                 'ewl.work.acc@gmail.com' ? (
-                                    <div className="row buttons-row-wrapper">
-                                        <button
-                                            className="delite-btn project-item-btn"
-                                            onClick={() =>
-                                                onDeliteProjectClick(i)
-                                            }
-                                            disabled={projectsArr.length <= 1}
-                                        >
-                                            Видалити
-                                        </button>
-                                        <button
-                                            className="edit-btn project-item-btn"
-                                            onClick={() =>
-                                                edit(
-                                                    element.projectName,
-                                                    element.country,
-                                                    element.salary,
-                                                    element.location,
-                                                    element.sex,
-                                                    element.ageFrom,
-                                                    element.ageTo,
-                                                    element.nationalaty,
-                                                    element.additionalInfo,
-                                                    element.housing,
-                                                    element.projectInfo,
-                                                    element.category,
-                                                    element.isActual,
-                                                    element.video,
-                                                    element.workSchedule,
-                                                    element.food,
-                                                    element.synchronerLink,
-                                                    element.contact,
-                                                    element.housingPhoto,
-                                                    element.date,
-                                                    element.lat,
-                                                    element.lng,
-                                                    element.partner
-                                                )
-                                            }
-                                        >
-                                            Редагувати
-                                        </button>
-                                    </div>
+                                    element.partner === 'EWL' ? undefined : (
+                                        <div className="row buttons-row-wrapper">
+                                            <button
+                                                className="delite-btn project-item-btn"
+                                                onClick={() =>
+                                                    onDeliteProjectClick(i)
+                                                }
+                                                disabled={
+                                                    projectsArr.length <= 1
+                                                }
+                                            >
+                                                Видалити
+                                            </button>
+                                            <button
+                                                className="edit-btn project-item-btn"
+                                                onClick={() =>
+                                                    edit(
+                                                        element.projectName,
+                                                        element.country,
+                                                        element.salary,
+                                                        element.location,
+                                                        element.sex,
+                                                        element.ageFrom,
+                                                        element.ageTo,
+                                                        element.nationalaty,
+                                                        element.additionalInfo,
+                                                        element.housing,
+                                                        element.projectInfo,
+                                                        element.category,
+                                                        element.isActual,
+                                                        element.video,
+                                                        element.workSchedule,
+                                                        element.food,
+                                                        element.synchronerLink,
+                                                        element.contact,
+                                                        element.housingPhoto,
+                                                        element.date,
+                                                        element.lat,
+                                                        element.lng,
+                                                        element.partner
+                                                    )
+                                                }
+                                            >
+                                                Редагувати
+                                            </button>
+                                        </div>
+                                    )
                                 ) : undefined}
                                 <div className="row buttons-row-wrapper">
                                     <button
