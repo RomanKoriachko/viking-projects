@@ -406,16 +406,6 @@ const EditProject = (props: Props) => {
                         onChange={handleChangePartner}
                     >
                         <FormControlLabel
-                            value="EWL"
-                            control={<Radio />}
-                            label="EWL"
-                            checked={
-                                editProjectState.partner === 'EWL'
-                                    ? true
-                                    : false
-                            }
-                        />
-                        <FormControlLabel
                             value="Personal Service"
                             control={<Radio />}
                             label="Personal Service"

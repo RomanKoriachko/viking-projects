@@ -425,14 +425,6 @@ const AddNewProject = (props: Props) => {
                         onChange={handleChangePartner}
                     >
                         <FormControlLabel
-                            value="EWL"
-                            control={<Radio />}
-                            label="EWL"
-                            checked={
-                                projectState.partner === 'EWL' ? true : false
-                            }
-                        />
-                        <FormControlLabel
                             value="Personal Service"
                             control={<Radio />}
                             label="Personal Service"
@@ -500,16 +492,6 @@ const AddNewProject = (props: Props) => {
                     value={projectState.location}
                     onChange={handleChangeProjectLocation}
                 />
-                {/* <TextField
-                    required
-                    className="form-item-input"
-                    label="Категорія"
-                    variant="outlined"
-                    id="category"
-                    size={inputSize}
-                    value={projectState.category}
-                    onChange={handleChangeProjectCategory}
-                /> */}
                 <div className="row form-item-row">
                     <TextField
                         required
@@ -549,16 +531,6 @@ const AddNewProject = (props: Props) => {
                     value={projectState.nationalaty}
                     onChange={handleChangeProjectNationalaty}
                 />
-                {/* <TextField
-                    className="form-item-input"
-                    label="Посилання на приїзд"
-                    variant="outlined"
-                    id="synchroner-link"
-                    multiline
-                    size={inputSize}
-                    value={projectState.synchronerLink}
-                    onChange={handleChangeProjectSynchronerLink}
-                /> */}
                 <TextField
                     required
                     className="form-item-input"
